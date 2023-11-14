@@ -4,6 +4,16 @@
             "info": "Unknown",
             "port": 18190,
             "mappedTo": 18190
+        },
+        {
+            "info": "Unknown",
+            "port": 18195,
+            "mappedTo": 18195
+        },
+        {
+            "info": "Unknown",
+            "port": 13505,
+            "mappedTo": 13505
         }
     ]
 }
