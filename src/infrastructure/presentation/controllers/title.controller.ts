@@ -51,7 +51,7 @@ export class TitleController {
     );
   }
 
-  @Get('/services')
+  @Get('/services/:serviceId')
   @ApiParam({ name: 'titleId', example: '4D5307E6' })
   @ApiParam({ name: 'serviceId', example: '45410004' })
   @Header('content-type', 'application/json')
