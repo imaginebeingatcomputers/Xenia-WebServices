@@ -8,12 +8,12 @@
         {
             "info": "Unknown",
             "port": 1000,
-            "mappedTo": 2000
+            "mappedTo": 1000
         },
         {
             "info": "Unknown",
             "port": 124,
-            "mappedTo": 1240
+            "mappedTo": 124
         }
     ]
 }
