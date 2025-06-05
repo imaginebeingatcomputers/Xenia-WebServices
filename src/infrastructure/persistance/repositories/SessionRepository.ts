@@ -158,6 +158,54 @@ export default class SessionRepository implements ISessionRepository {
     return sessions;
   }
 
+  public async findSessionsByPropertiesAndContext(
+    titleId: TitleId,
+    resultsCount: number,
+    numUsers: number,
+  ) {
+    const sessionsDocs = await this.SessionModel.find(
+      {
+        advertised: true,
+        deleted: false,
+        migration: undefined,
+        titleId: titleId.toString(),
+      },
+      undefined,
+      {
+        limit: resultsCount,
+      },
+    );
+
+    let sessions: Session[] = sessionsDocs.map(
+      this.sessionDomainMapper.mapToDomainModel,
+    );
+
+    // Remove private sessions
+    sessions = sessions.filter((session) => {
+      return session.publicSlotsCount != 0;
+    });
+
+    // Remove sessions that are full
+    sessions = sessions.filter((session) => {
+      return !session.isfull;
+    });
+
+    // Remove sessions with not enough slots
+    if (numUsers) {
+      sessions = sessions.filter((session) => {
+        if (
+          session.availablePublicSlots >= numUsers ||
+          session.availablePrivateSlots >= numUsers
+        ) {
+          return true;
+        }
+      });
+    }
+
+    return sessions;
+  }
+
+
   public async findAllAdvertisedSessions() {
     const sessions = await this.SessionModel.find(
       {

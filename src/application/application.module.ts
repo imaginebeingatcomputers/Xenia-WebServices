@@ -38,6 +38,12 @@ import { XStorageDeleteCommandHandler } from './commandHandlers/XStorageDeleteCo
 import { XStorageBuildServerPathCommandHandler } from './commandHandlers/XStorageBuildServerPathCommandHandler';
 import { GetTitleSessionsQueryHandler } from './queryHandlers/GetTitleSessionsQueryHandler';
 import { DeleteMyProfilesQueryHandler } from './queryHandlers/DeleteAllMyProfilesQueryHandler';
+import { DeleteMyNetworksQuery } from './queries/DeleteMyNetworksQuery';
+import { GetNetworkByIpQuery } from './queries/GetNetworkByIpQuery';
+import { CreateNetworkCommand } from './commands/CreateNetworkCommand';
+import { CreateNetworkCommandHandler } from './commandHandlers/CreateNetworkCommandHandler';
+import { ModifyNetworkCommand } from './commands/ModifyNetworkCommand';
+import { ModifyNetworkCommandHandler } from './commandHandlers/ModifyNetworkCommandHandler';
 
 export const queryHandlers = [
   GetSessionsQueryHandler,
@@ -55,6 +61,8 @@ export const queryHandlers = [
   XStorageBuildServerPathCommandHandler,
   GetTitleSessionsQueryHandler,
   DeleteMyProfilesQueryHandler,
+  DeleteMyNetworksQuery,
+  GetNetworkByIpQuery,
 ];
 
 export const commandHandlers = [
@@ -73,6 +81,8 @@ export const commandHandlers = [
   AddSessionPropertyCommandHandler,
   AggregateSessionCommandHandler,
   ProcessClientAddressCommandHandler,
+  CreateNetworkCommandHandler,
+  ModifyNetworkCommandHandler,
 ];
 
 @Module({

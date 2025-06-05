@@ -39,9 +39,7 @@ import {
   
     @Post()
     async createNetwork(@Body() request: CreateNetworkRequest) {
-      // what if xuid or mac address fails?
-  
-      await this.commandBus.execute(
+        await this.commandBus.execute(
         new CreateNetworkCommand(
           new IpAddress(request.localIpAddress),
           new IpAddress(request.remoteIpAddress),

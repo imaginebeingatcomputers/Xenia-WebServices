@@ -10,6 +10,7 @@ import { IndexController } from './controllers/index.controller';
 import { XStorageController } from './controllers/xstorage.controller';
 import SessionPresentationMapper from './mappers/SessionPresentationMapper';
 import SessionDetailsPresentationMapper from './mappers/SessionDetailsPresentationMapper';
+import { NetworkController } from './controllers/network.controller';
 
 @Module({
   imports: [CqrsModule],
@@ -21,6 +22,7 @@ import SessionDetailsPresentationMapper from './mappers/SessionDetailsPresentati
     LeaderboardsController,
     IndexController,
     XStorageController,
+    NetworkController,
   ],
   providers: [SessionPresentationMapper, SessionDetailsPresentationMapper],
 })
