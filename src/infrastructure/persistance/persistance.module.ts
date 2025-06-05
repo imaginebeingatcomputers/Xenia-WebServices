@@ -16,6 +16,11 @@ import SessionRepository from './repositories/SessionRepository';
 import SessionPersistanceMapper from './mappers/SessionPersistanceMapper';
 import SessionDomainMapper from './mappers/SessionDomainMapper';
 import { Session, SessionSchema } from './models/SessionSchema';
+import { Network, NetworkSchema } from './models/NetworkSchema'
+import { INetworkRepositorySymbol } from 'src/domain/repositories/INetworkRepository';
+import NetworkRepository from './repositories/NetworkRepository';
+import NetworkPersistanceMapper from './mappers/SessionPersistanceMapper';
+import NetworkDomainMapper from './mappers/NetworkDomainMapper';
 
 const persistanceSettings = new PersistanceSettings().get();
 
@@ -26,6 +31,7 @@ const persistanceSettings = new PersistanceSettings().get();
       { name: Session.name, schema: SessionSchema },
       { name: Leaderboard.name, schema: LeaderboardSchema },
       { name: Player.name, schema: PlayerSchema },
+      { name: Network.name, schema: NetworkSchema },
     ]),
   ],
   providers: [
@@ -49,11 +55,18 @@ const persistanceSettings = new PersistanceSettings().get();
     },
     PlayerPersistanceMapper,
     PlayerDomainMapper,
+    {
+      provide: INetworkRepositorySymbol,
+      useClass: NetworkRepository,
+    },
+    NetworkPersistanceMapper,
+    NetworkDomainMapper,
   ],
   exports: [
     ISessionRepositorySymbol,
     ILeaderboardRepositorySymbol,
     IPlayerRepositorySymbol,
+    INetworkRepositorySymbol
   ],
 })
 export class PersistanceModule {}
