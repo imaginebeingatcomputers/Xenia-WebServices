@@ -1,5 +1,5 @@
 import IpAddress from 'src/domain/value-objects/IpAddress';
 
-export class DeleteMyNetworksQuery {
+export class DeleteAllMyNetworksQuery {
   constructor(public readonly ipAddress: IpAddress) {}
 }

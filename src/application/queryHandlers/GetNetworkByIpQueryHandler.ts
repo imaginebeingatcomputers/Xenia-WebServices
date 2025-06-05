@@ -6,7 +6,7 @@ import INetworkRepository, {
 import { GetNetworkByIpQuery } from '../queries/GetNetworkByIpQuery';
 
 @QueryHandler(GetNetworkByIpQuery)
-export class GetNetworkBySdpQueryHandler implements IQueryHandler<GetNetworkByIpQuery> {
+export class GetNetworkByIpQueryHandler implements IQueryHandler<GetNetworkByIpQuery> {
   constructor(
     @Inject(INetworkRepositorySymbol)
     private repository: INetworkRepository,

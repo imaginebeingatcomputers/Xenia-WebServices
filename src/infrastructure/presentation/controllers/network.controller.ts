@@ -19,7 +19,7 @@ import {
   import { GetNetworkByIpQuery } from 'src/application/queries/GetNetworkByIpQuery';
   import { ProcessClientAddressCommand } from 'src/application/commands/ProcessClientAddressCommand';
   import { RealIP } from 'nestjs-real-ip';
-  import { DeleteMyNetworksQuery } from 'src/application/queries/DeleteMyNetworksQuery';
+  import { DeleteAllMyNetworksQuery } from 'src/application/queries/DeleteAllMyNetworksQuery';
   import { ModifyNetworkCommand } from 'src/application/commands/ModifyNetworkCommand';
   import { ModifyNetworkRequest } from 'src/infrastructure/presentation/requests/ModifyNetworkRequest';
   import { FindNetworkByIpRequest } from 'src/infrastructure/presentation/requests/FindNetworkByIpRequest';
@@ -94,7 +94,7 @@ import {
       );
   
       const networks: Network[] = await this.queryBus.execute(
-        new DeleteMyNetworksQuery(new IpAddress(ipv4)),
+        new DeleteAllMyNetworksQuery(new IpAddress(ipv4)),
       );
   
       const deleted_networks: Array<[string, string, string]> = [];

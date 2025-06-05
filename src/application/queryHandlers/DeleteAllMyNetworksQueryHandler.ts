@@ -3,18 +3,18 @@ import { QueryHandler, IQueryHandler } from '@nestjs/cqrs';
 import INetworkRepository, {
   INetworkRepositorySymbol,
 } from 'src/domain/repositories/INetworkRepository';
-import { DeleteMyNetworksQuery } from '../queries/DeleteMyNetworksQuery';
+import { DeleteAllMyNetworksQuery } from '../queries/DeleteAllMyNetworksQuery';
 
-@QueryHandler(DeleteMyNetworksQuery)
-export class DeleteMyNetworksQueryHandler
-  implements IQueryHandler<DeleteMyNetworksQuery>
+@QueryHandler(DeleteAllMyNetworksQuery)
+export class DeleteAllMyNetworksQueryHandler
+  implements IQueryHandler<DeleteAllMyNetworksQuery>
 {
   constructor(
     @Inject(INetworkRepositorySymbol)
     private repository: INetworkRepository,
   ) {}
 
-  async execute(query: DeleteMyNetworksQuery) {
+  async execute(query: DeleteAllMyNetworksQuery) {
     return this.repository.DeleteAllMyNetworksByAddress(query.ipAddress);
   }
 }
