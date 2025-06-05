@@ -43,8 +43,8 @@ import {
   
       await this.commandBus.execute(
         new CreateNetworkCommand(
-          new IpAddress(request.ipAddress),
-          new MacAddress(request.macAddress),
+          new IpAddress(request.localIpAddress),
+          new IpAddress(request.remoteIpAddress),
           new Sdp(request.sdp),        
           ),
       );
@@ -56,7 +56,7 @@ import {
     ): Promise<NetworkResponse> {
   
       const network = await this.queryBus.execute(
-        new GetNetworkByIpQuery(new IpAddress(request.ipAddress)),
+        new GetNetworkByIpQuery(new IpAddress(request.localIpAddress), new IpAddress(request.remoteIpAddress)),
       );
   
       if (!network) {
@@ -64,20 +64,20 @@ import {
       }
   
       return {
-        ipAddress: network.ipAddress.value,
+        localIpAddress: network.localIpAddress.value,
+        remoteIpAddress: network.remoteIpAddress.value,
         sdp: network.sdp.value,
-        macAddress: network.macAddress.value,
       };
     }
   
     @Post('/setsdp')
-    async modifySession(
+    async modifyNetwork(
       @Body() request: ModifyNetworkRequest,
     ) {
       const network = await this.commandBus.execute(
         new ModifyNetworkCommand(
-          new IpAddress(request.ipAddress),
-          new MacAddress(request.macAddress),
+          new IpAddress(request.localIpAddress),
+          new IpAddress(request.remoteIpAddress),
           new Sdp(request.sdp),
         ),
       );
@@ -102,7 +102,7 @@ import {
       const deleted_networks: Array<[string, string, string]> = [];
   
       for (const network of networks) {
-        deleted_networks.push([network.ipAddress.value, network.macAddress.value, network.sdp.value]);
+        deleted_networks.push([network.localIpAddress.value, network.remoteIpAddress.value, network.sdp.value]);
       }
   
       return deleted_networks;

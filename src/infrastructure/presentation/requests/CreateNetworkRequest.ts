@@ -2,9 +2,9 @@ import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateNetworkRequest {
   @ApiProperty()
-  ipAddress: string;
+  localIpAddress: string;
+  @ApiProperty()
+  remoteIpAddress: string;
   @ApiProperty()
   sdp: string;
-  @ApiProperty()
-  macAddress: string;
 }

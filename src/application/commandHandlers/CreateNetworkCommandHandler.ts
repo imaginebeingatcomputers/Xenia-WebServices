@@ -17,8 +17,8 @@ export class CreateNetworkCommandHandler
 
   async execute(command: CreateNetworkCommand) {
     const network = Network.create({
-      ipAddress: command.ipAddress,
-      macAddress: command.macAddress,
+      localIpAddress: command.localIpAddress,
+      remoteIpAddress: command.remoteIpAddress,
       sdp: command.sdp,
     });
 

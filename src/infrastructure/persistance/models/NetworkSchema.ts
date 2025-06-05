@@ -6,11 +6,13 @@ export type NetworkDocument = Network & Document;
 @Schema()
 export class Network {
   @Prop({ required: true })
-  ipAddress: string;
+  localIpAddress: string;
   @Prop({ required: true })
-  macAddress: string;
+  remoteIpAddress: string;
   @Prop()
   sdp?: string;
 }
 
 export const NetworkSchema = SchemaFactory.createForClass(Network);
+
+NetworkSchema.index({ localIpAddress: 1, remoteIpAddress: 1, sdp: 1 }, { unique: true });

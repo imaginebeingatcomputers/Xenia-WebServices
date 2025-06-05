@@ -25,7 +25,9 @@ export default class NetworkRepository implements INetworkRepository {
   public async save(network: Network) {
     await this.NetworkModel.findOneAndUpdate(
       {
-        MacAddress: network.macAddress.value,
+        localIpAddress: network.localIpAddress.value,
+        remoteIpAddress: network.remoteIpAddress.value,
+        sdp: network.sdp.value,
       },
       this.networkPersistanceMapper.mapToDataModel(network),
       {
@@ -35,45 +37,22 @@ export default class NetworkRepository implements INetworkRepository {
     );
   }
 
-  public async findByMacAddress(macAddress: MacAddress): Promise<Network> {
-    if (!macAddress) {
-      return undefined;
-    }
-
+  public async findByIpAddress(localIpAddress: IpAddress, remoteIpAddress: IpAddress): Promise<Network> {
     const network = await this.NetworkModel.findOne({
-      macAddress: macAddress.value,
+      localIpAddress: localIpAddress.value,
+      remoteIpAddress: remoteIpAddress.value,
     });
 
     if (!network) {
       return undefined;
     }
-
-    return this.networkDomainMapper.mapToDomainModel(network);
-  }
-
-  public async findByIpAddress(ip: IpAddress): Promise<Network> {
-    const network = await this.NetworkModel.findOne({
-      ipAddress: ip.value,
-    });
-
-    if (!network) {
-      return undefined;
-    }
-
-    return this.networkDomainMapper.mapToDomainModel(network);
-  }
-
-  public async findBySdp(sdp: Sdp): Promise<Network> {
-    const network = await this.NetworkModel.findOne({
-      sdp: sdp.value,
-    });
 
     return this.networkDomainMapper.mapToDomainModel(network);
   }
 
   public async DeleteAllMyNetworksByAddress(ip: IpAddress): Promise<Network[]> {
     const network_docs = await this.NetworkModel.find({
-      hostAddress: ip.value,
+      localIpAddress: ip.value,
     });
   
     const networks: Network[] = network_docs.map((document) => {
@@ -81,7 +60,7 @@ export default class NetworkRepository implements INetworkRepository {
     });
   
     await this.NetworkModel.deleteMany({
-      hostAddress: ip.value,
+      localIpAddress: ip.value,
     });
   
     return networks;

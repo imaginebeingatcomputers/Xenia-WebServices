@@ -16,7 +16,8 @@ export class ModifyNetworkCommandHandler
 
   async execute(command: ModifyNetworkCommand) {
     const network = await this.repository.findByIpAddress(
-      command.ipAddress
+      command.localIpAddress,
+      command.remoteIpAddress,
     );
 
     if (!network) {
@@ -24,8 +25,8 @@ export class ModifyNetworkCommandHandler
     }
 
     network.updateNetwork({
-      ipAddress: command.ipAddress,
-      macAddress: command.macAddress,
+      localIpAddress: command.localIpAddress,
+      remoteIpAddress: command.remoteIpAddress,
       sdp: command.sdp,
     });
 

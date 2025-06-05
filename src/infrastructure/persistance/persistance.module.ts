@@ -19,7 +19,7 @@ import { Session, SessionSchema } from './models/SessionSchema';
 import { Network, NetworkSchema } from './models/NetworkSchema'
 import { INetworkRepositorySymbol } from 'src/domain/repositories/INetworkRepository';
 import NetworkRepository from './repositories/NetworkRepository';
-import NetworkPersistanceMapper from './mappers/SessionPersistanceMapper';
+import NetworkPersistanceMapper from './mappers/NetworkPersistanceMapper';
 import NetworkDomainMapper from './mappers/NetworkDomainMapper';
 
 const persistanceSettings = new PersistanceSettings().get();

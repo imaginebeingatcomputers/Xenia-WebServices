@@ -1,16 +1,15 @@
 import IpAddress from '../value-objects/IpAddress';
-import MacAddress from '../value-objects/MacAddress';
 import Sdp from '../value-objects/Sdp'
 
 interface NetworkProps {
-  ipAddress: IpAddress;
-  macAddress: MacAddress;
+  localIpAddress: IpAddress;
+  remoteIpAddress: IpAddress;
   sdp: Sdp;
 }
 
 interface CreateProps {
-  ipAddress: IpAddress;
-  macAddress: MacAddress;
+  localIpAddress: IpAddress;
+  remoteIpAddress: IpAddress;
   sdp: Sdp;
 }
 
@@ -28,21 +27,20 @@ export default class Network {
   }
 
   public updateNetwork(props: NetworkProps) {
-    this.props.ipAddress = this.ipAddress;
-    this.props.macAddress = this.macAddress;
-    this.props.sdp = this.sdp;
+    this.props.localIpAddress = this.localIpAddress;
+    this.props.remoteIpAddress = this.remoteIpAddress;
   }
 
   public setSDP(sdp: Sdp) {
     this.props.sdp = sdp
   }
 
-  get ipAddress() {
-    return this.props.ipAddress;
+  get localIpAddress() {
+    return this.props.localIpAddress;
   }
 
-  get macAddress() {
-    return this.props.macAddress;
+  get remoteIpAddress() {
+    return this.props.remoteIpAddress;
   }
 
   get sdp() {

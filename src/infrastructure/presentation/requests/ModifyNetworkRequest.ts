@@ -1,6 +1,6 @@
 export interface ModifyNetworkRequest {
-    ipAddress: string;
-    macAddress: string;
+    localIpAddress: string;
+    remoteIpAddress: string;
     sdp: string;
   }
   

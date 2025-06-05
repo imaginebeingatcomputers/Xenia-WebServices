@@ -13,6 +13,6 @@ export class GetNetworkBySdpQueryHandler implements IQueryHandler<GetNetworkByIp
   ) {}
 
   async execute(query: GetNetworkByIpQuery) {
-    return this.repository.findByIpAddress(query.ipAddress);
+    return this.repository.findByIpAddress(query.localIpAddress, query.remoteIpAddress);
   }
 }
