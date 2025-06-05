@@ -5,6 +5,8 @@ export interface PersistanceSettingsProps {
   nginx: string;
   heroku_nginx: string;
   xstorage: string;
+  turn_server: string;
+  turn_server_password: string;
 }
 
 export default interface IPersistanceSettings {

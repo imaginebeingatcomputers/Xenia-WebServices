@@ -9,6 +9,7 @@ import compression from 'compression';
 import helmet from 'helmet';
 import { ConsoleLogger } from '@nestjs/common';
 import fs from 'fs';
+import Turn from "node-turn";
 
 async function bootstrap() {
   const logger = new ConsoleLogger('Main');
@@ -23,11 +24,23 @@ async function bootstrap() {
     rawBody: true,
   });
 
+
   const SSL_enabled = envs.SSL == 'true';
   const Swagger_enabled = envs.swagger_API == 'true';
   const Heroku_Nginx_enabled = envs.heroku_nginx == 'true';
   const Nginx_enabled = envs.nginx == 'true';
   const XStorage_enabled = envs.xstorage == 'true';
+  const Turn_server_enabled = envs.turn_server == 'true'
+  
+  if (Turn_server_enabled){
+    const turn = new Turn({
+      authMech: 'long-term',
+      credentials: {
+        xenia: envs.turn_server_password,
+      }
+    });
+    turn.start();
+  }
 
   if (Swagger_enabled) {
     const config = new DocumentBuilder()
@@ -84,6 +97,7 @@ async function bootstrap() {
     `Heroku & Nginx:\t ${Heroku_Nginx_enabled ? 'Enabled' : 'Disabled'}`,
   );
   logger.debug(`XStorage:\t\t ${XStorage_enabled ? 'Enabled' : 'Disabled'}`);
+  logger.debug(`Turn Server:\t ${Turn_server_enabled ? 'Enabled' : 'Disabled'}` )
   logger.debug(``);
   logger.debug(`Application is running on: ${await app.getUrl()}`);
 }

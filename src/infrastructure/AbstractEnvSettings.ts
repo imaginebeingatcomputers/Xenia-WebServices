@@ -18,6 +18,8 @@ export default abstract class AbstractEnvSettings<T> {
           ? process.env.heroku_nginx
           : 'false',
         xstorage: process.env.xstorage ? process.env.xstorage : 'false',
+        turn_server: process.env.TURN_SERVER ? process.env.TURN_SERVER : 'false',
+        turn_server_password: process.env.TURN_SERVER_PASSWORD ? process.env.TURN_SERVER_PASSWORD : '',
       },
     };
   }
