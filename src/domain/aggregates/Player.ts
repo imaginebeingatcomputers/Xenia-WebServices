@@ -4,6 +4,7 @@ import SessionId from '../value-objects/SessionId';
 import Xuid from '../value-objects/Xuid';
 import Gamertag from '../value-objects/Gamertag';
 import TitleId from '../value-objects/TitleId';
+import Sdp from '../value-objects/Sdp';
 import StateFlag, { StateFlags } from '../value-objects/StateFlag';
 
 interface PlayerProps {
@@ -13,6 +14,7 @@ interface PlayerProps {
   macAddress: MacAddress;
   machineId: Xuid;
   port: number;
+  sdp: Sdp;
   sessionId?: SessionId;
   titleId?: TitleId;
   state?: StateFlag;
@@ -42,6 +44,7 @@ export default class Player {
     return new Player({
       ...props,
       port: 36000, // Port hard-coded?
+      sdp: new Sdp(''),
       state: new StateFlag(
         StateFlags.ONLINE | StateFlags.JOINABLE | StateFlags.PLAYING,
       ),
@@ -58,6 +61,7 @@ export default class Player {
     this.props.macAddress = player.macAddress;
     this.props.machineId = player.machineId;
     this.props.port = player.port;
+    this.props.sdp = player.sdp;
     this.props.sessionId = player.sessionId;
     this.props.titleId = player.titleId;
     this.props.state = player.state;
@@ -84,6 +88,10 @@ export default class Player {
     this.props.state = state;
   }
 
+  public setSDP(sdp: Sdp) {
+    this.props.sdp = sdp
+  }
+
   get xuid() {
     return this.props.xuid;
   }
@@ -107,6 +115,11 @@ export default class Player {
   get port() {
     return this.props.port;
   }
+
+  get sdp() {
+    return this.props.sdp;
+  }
+
 
   get sessionId() {
     return this.props.sessionId;

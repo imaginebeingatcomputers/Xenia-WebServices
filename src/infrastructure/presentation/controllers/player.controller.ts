@@ -12,6 +12,7 @@ import { CreatePlayerCommand } from 'src/application/commands/CreatePlayerComman
 import { CreatePlayerRequest } from '../requests/CreatePlayerRequest';
 import Xuid from 'src/domain/value-objects/Xuid';
 import Gamertag from 'src/domain/value-objects/Gamertag';
+import Sdp from 'src/domain/value-objects/Sdp';
 import IpAddress from 'src/domain/value-objects/IpAddress';
 import MacAddress from 'src/domain/value-objects/MacAddress';
 import { FindPlayerRequest } from '../requests/FindPlayerRequest';
@@ -83,6 +84,7 @@ export class PlayerController {
       hostAddress: player.hostAddress.value,
       machineId: player.machineId.value,
       port: player.port,
+      sdp: player.sdp.value,
       macAddress: player.macAddress.value,
       sessionId: player.sessionId.value,
     };

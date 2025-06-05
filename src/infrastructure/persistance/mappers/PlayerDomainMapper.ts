@@ -7,6 +7,7 @@ import MacAddress from 'src/domain/value-objects/MacAddress';
 import SessionId from 'src/domain/value-objects/SessionId';
 import Gamertag from 'src/domain/value-objects/Gamertag';
 import TitleId from 'src/domain/value-objects/TitleId';
+import SDP from 'src/domain/value-objects/Sdp';
 import StateFlag, { StateFlags } from 'src/domain/value-objects/StateFlag';
 
 @Injectable()
@@ -21,6 +22,7 @@ export default class PlayerDomainMapper {
     let macAddress: MacAddress = new MacAddress('002212345678');
     let machineId: Xuid = new Xuid('FA00002212345678');
     let port: number = 0;
+    let sdp: SDP = new SDP('0');
     let gamertag: Gamertag = new Gamertag('Xenia User');
     let sessionId: SessionId = new SessionId('0'.repeat(16));
     let titleId: TitleId = new TitleId('0');
@@ -54,6 +56,10 @@ export default class PlayerDomainMapper {
         port = player.port;
       }
 
+      if (player?.sdp) {
+        sdp = new SDP(player.sdp);
+      }
+
       if (player?.sessionId) {
         sessionId = new SessionId(player.sessionId.toString());
       }
@@ -80,6 +86,7 @@ export default class PlayerDomainMapper {
       macAddress: macAddress,
       machineId: machineId,
       port: port,
+      sdp: sdp,
       sessionId: sessionId,
       titleId: titleId,
       state: state,

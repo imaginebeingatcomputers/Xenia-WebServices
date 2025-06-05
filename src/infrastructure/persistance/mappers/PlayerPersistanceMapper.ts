@@ -12,6 +12,7 @@ export default class PlayerPersistanceMapper {
       machineId: player.machineId.value,
       macAddress: player.macAddress.value,
       port: player.port,
+      sdp: player.sdp.value,
       sessionId: player.sessionId?.value,
       updatedAt: new Date(),
       titleId: player.titleId?.toString(),

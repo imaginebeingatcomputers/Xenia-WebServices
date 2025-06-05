@@ -18,6 +18,8 @@ export class Player {
   @Prop({ required: true })
   port: number;
   @Prop()
+  sdp?: string;
+  @Prop()
   sessionId?: string;
   @Prop({ type: Date, expires: '1d', default: Date.now(), required: true })
   updatedAt: Date;

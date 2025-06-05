@@ -10,5 +10,7 @@ export class CreatePlayerRequest {
   @ApiProperty()
   hostAddress: string;
   @ApiProperty()
+  sdp: string;
+  @ApiProperty()
   macAddress: string;
 }
