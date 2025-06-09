@@ -1,6 +1,6 @@
 export interface ModifyNetworkRequest {
     localIpAddress: string;
-    remoteIpAddress: string;
+    port: number;
     sdp: string;
   }
   

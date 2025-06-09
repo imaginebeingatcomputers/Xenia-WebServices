@@ -1,6 +1,6 @@
 export interface NetworkResponse {
     localIpAddress: string;
-    remoteIpAddress: string;
+    port: number;
     sdp: string;
   }
   

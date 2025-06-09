@@ -7,7 +7,7 @@ export default class NetworkPersistanceMapper {
   public mapToDataModel(network: Network): NetworkModel {
     return {
       localIpAddress: network.localIpAddress.value,
-      remoteIpAddress: network.remoteIpAddress.value,
+      port: network.port,
       sdp: network.sdp.value,
     };
   }

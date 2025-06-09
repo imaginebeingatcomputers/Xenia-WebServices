@@ -5,7 +5,7 @@ import Sdp from 'src/domain/value-objects/Sdp';
 export class ModifyNetworkCommand {
   constructor(
     public readonly localIpAddress: IpAddress,
-    public readonly remoteIpAddress: IpAddress,
+    public readonly port: number,
     public readonly sdp: Sdp,
   ) {}
 }

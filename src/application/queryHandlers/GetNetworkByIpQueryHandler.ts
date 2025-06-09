@@ -13,6 +13,6 @@ export class GetNetworkByIpQueryHandler implements IQueryHandler<GetNetworkByIpQ
   ) {}
 
   async execute(query: GetNetworkByIpQuery) {
-    return this.repository.findByIpAddress(query.localIpAddress, query.remoteIpAddress);
+    return this.repository.findByIpAddress(query.localIpAddress, query.port);
   }
 }

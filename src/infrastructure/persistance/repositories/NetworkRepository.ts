@@ -26,7 +26,7 @@ export default class NetworkRepository implements INetworkRepository {
     await this.NetworkModel.findOneAndUpdate(
       {
         localIpAddress: network.localIpAddress.value,
-        remoteIpAddress: network.remoteIpAddress.value,
+        port: network.port,
         sdp: network.sdp.value,
       },
       this.networkPersistanceMapper.mapToDataModel(network),
@@ -37,10 +37,10 @@ export default class NetworkRepository implements INetworkRepository {
     );
   }
 
-  public async findByIpAddress(localIpAddress: IpAddress, remoteIpAddress: IpAddress): Promise<Network> {
+  public async findByIpAddress(localIpAddress: IpAddress, port: number): Promise<Network> {
     const network = await this.NetworkModel.findOne({
       localIpAddress: localIpAddress.value,
-      remoteIpAddress: remoteIpAddress.value,
+      port: port,
     });
 
     if (!network) {

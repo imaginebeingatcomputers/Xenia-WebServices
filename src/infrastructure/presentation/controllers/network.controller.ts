@@ -42,7 +42,7 @@ import {
         await this.commandBus.execute(
         new CreateNetworkCommand(
           new IpAddress(request.localIpAddress),
-          new IpAddress(request.remoteIpAddress),
+          request.port,
           new Sdp(request.sdp),        
           ),
       );
@@ -54,7 +54,7 @@ import {
     ): Promise<NetworkResponse> {
   
       const network = await this.queryBus.execute(
-        new GetNetworkByIpQuery(new IpAddress(request.localIpAddress), new IpAddress(request.remoteIpAddress)),
+        new GetNetworkByIpQuery(new IpAddress(request.localIpAddress), request.port),
       );
   
       if (!network) {
@@ -63,7 +63,7 @@ import {
   
       return {
         localIpAddress: network.localIpAddress.value,
-        remoteIpAddress: network.remoteIpAddress.value,
+        port: network.port,
         sdp: network.sdp.value,
       };
     }
@@ -75,7 +75,7 @@ import {
       const network = await this.commandBus.execute(
         new ModifyNetworkCommand(
           new IpAddress(request.localIpAddress),
-          new IpAddress(request.remoteIpAddress),
+          request.port,
           new Sdp(request.sdp),
         ),
       );
@@ -97,10 +97,10 @@ import {
         new DeleteAllMyNetworksQuery(new IpAddress(ipv4)),
       );
   
-      const deleted_networks: Array<[string, string, string]> = [];
+      const deleted_networks: Array<[string, number, string]> = [];
   
       for (const network of networks) {
-        deleted_networks.push([network.localIpAddress.value, network.remoteIpAddress.value, network.sdp.value]);
+        deleted_networks.push([network.localIpAddress.value, network.port, network.sdp.value]);
       }
   
       return deleted_networks;

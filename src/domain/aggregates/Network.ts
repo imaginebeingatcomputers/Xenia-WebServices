@@ -3,13 +3,13 @@ import Sdp from '../value-objects/Sdp'
 
 interface NetworkProps {
   localIpAddress: IpAddress;
-  remoteIpAddress: IpAddress;
+  port: number;
   sdp: Sdp;
 }
 
 interface CreateProps {
   localIpAddress: IpAddress;
-  remoteIpAddress: IpAddress;
+  port: number;
   sdp: Sdp;
 }
 
@@ -28,7 +28,7 @@ export default class Network {
 
   public updateNetwork(props: NetworkProps) {
     this.props.localIpAddress = this.localIpAddress;
-    this.props.remoteIpAddress = this.remoteIpAddress;
+    this.props.port = this.port;
   }
 
   public setSDP(sdp: Sdp) {
@@ -39,8 +39,8 @@ export default class Network {
     return this.props.localIpAddress;
   }
 
-  get remoteIpAddress() {
-    return this.props.remoteIpAddress;
+  get port() {
+    return this.props.port;
   }
 
   get sdp() {

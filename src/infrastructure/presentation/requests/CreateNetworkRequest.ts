@@ -4,7 +4,7 @@ export class CreateNetworkRequest {
   @ApiProperty()
   localIpAddress: string;
   @ApiProperty()
-  remoteIpAddress: string;
+  port: number;
   @ApiProperty()
   sdp: string;
 }

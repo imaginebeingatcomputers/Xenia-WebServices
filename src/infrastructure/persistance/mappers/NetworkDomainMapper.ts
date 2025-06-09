@@ -14,7 +14,7 @@ export default class NetworkDomainMapper {
 
     return new Network({
       localIpAddress: new IpAddress(network.localIpAddress),
-      remoteIpAddress: new IpAddress(network.remoteIpAddress),
+      port: network.port,
       sdp: new Sdp(network.sdp),
     });
   }
